@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(cpp-project-template VERSION 0.1.0)
+project(TcCppLib VERSION 0.1.0)
 
 #include(CheckCXXCompilerFlag)
 #CHECK_CXX_COMPILER_FLAG("-march=native" COMPILER_SUPPORTS_MARCH_NATIVE)
