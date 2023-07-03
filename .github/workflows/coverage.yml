@@ -9,6 +9,8 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Debug
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
 
 jobs:
   build:
@@ -41,3 +43,5 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+
+
