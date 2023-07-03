@@ -750,9 +750,21 @@ namespace ppx
 
 		bool operator==(const MatrixS &other) const
 		{
+#ifndef TWINCAT_INCOMPATIBLE
 			return std::equal(this->m_data.begin(), this->m_data.end(), other.data(),
 				[](double ele1, double ele2)
 				{ return details::is_same(ele1, ele2); });
+#else
+			// 给Twincat环境提供一个单独的实现
+			auto fun = [](double ele1, double ele2)
+			{ return details::is_same(ele1, ele2); };
+			auto first2 = other.data();
+			for(auto first1 = this->m_data.begin(); first1 != this->m_data.end(); ++first1, ++first2)
+			{
+				if(!(*first1 == *first2)) return(false);
+			}
+			return true;
+#endif
 		}
 
 		template <typename T>
