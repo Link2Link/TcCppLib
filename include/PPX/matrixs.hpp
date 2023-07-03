@@ -761,7 +761,7 @@ namespace ppx
 			auto first2 = other.data();
 			for(auto first1 = this->m_data.begin(); first1 != this->m_data.end(); ++first1, ++first2)
 			{
-				if(!(*first1 == *first2)) return(false);
+				if (!(fun(*first1, *first2))) return(false);
 			}
 			return true;
 #endif
