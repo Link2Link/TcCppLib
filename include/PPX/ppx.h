@@ -16,6 +16,7 @@
 #include "exprtmpl.hpp"
 #include "matrixs.hpp"
 #include "linalg.hpp"
+#include "optimization.hpp"
 
 
 
