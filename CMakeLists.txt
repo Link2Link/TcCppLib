@@ -25,10 +25,13 @@ set(PROJECT_TOP_DIR ${PROJECT_SOURCE_DIR})
 SET(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/bin)
 
 FILE(GLOB SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
-include_directories(${PROJECT_SOURCE_DIR}/include/CHEN)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-#add_executable(CHEN ${SRC})
+#add_executable(devlop ${SRC} main.cpp)
 add_library(CHEN STATIC ${SRC})
+add_library(ppx INTERFACE)
+target_include_directories(ppx INTERFACE include/PPX)
+
 install(TARGETS CHEN DESTINATION ${PROJECT_SOURCE_DIR}/bin) #安装到bin目录
 
 option(ENABLE_UNIT_TESTS "Enable unit tests" ON)
@@ -42,3 +45,6 @@ if(${ENABLE_UNIT_TESTS})
     add_definitions(-DENABLE_UNIT_TESTS)
     add_subdirectory(test)
 endif()
+
+
+add_subdirectory(demo)
