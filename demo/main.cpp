@@ -45,7 +45,7 @@ void test_expr()
 
 	MatrixS<3, 4> m2 = {2, 3, 0, 4, 0, 0, 0, 0, 1, -1, 0, 0};
 	PRINT_SINGLE_ELEMENTS(m2, "m2 = ");
-	cout << (m == m2);
+	cout << (m == m2) << endl;
 
 
 }
@@ -59,5 +59,9 @@ int main()
 {
 	test_expr();
 	test_matrix();
+    MatrixS<3, 4> m;
+    cout << "Here " << SIGN(1) << endl;
+
+
 	return 0;
 }

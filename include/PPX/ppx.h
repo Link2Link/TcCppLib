@@ -13,9 +13,9 @@
 
 
 
-#include "PPX/exprtmpl.hpp"
-#include "PPX/matrixs.hpp"
-#include "PPX/linalg.hpp"
+#include "exprtmpl.hpp"
+#include "matrixs.hpp"
+#include "linalg.hpp"
 
 
 

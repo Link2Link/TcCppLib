@@ -6,10 +6,11 @@
 #include <array>
 #include <vector>
 #include <cassert>
+
 #ifndef TWINCAT_INCOMPATIBLE
-#include <iostream>
-#include <iomanip>
-#include <numeric>
+    #include <iostream>
+    #include <iomanip>
+    #include <numeric>
 #endif
 
 
