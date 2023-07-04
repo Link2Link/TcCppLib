@@ -98,18 +98,11 @@ void test_robotic()
 				 -0.763366651308747, -0.126458894286361, 0.633466260921244, 0.0,
 				 0.263125324010681, 0.026400593101990, -0.209335552377633, 1.0};
 
-	auto M_err = M_matlab.I() * M;
-	auto err_norm = norm2(M_err);
-	cout << err_norm << endl;
-
 	PRINT_SINGLE_ELEMENTS(M, "M = ");
-	PRINT_SINGLE_ELEMENTS(M_matlab, "M_matlab = ");
-	PRINT_SINGLE_ELEMENTS(M_err, "M_err = ");
 
-	cout << "equal " << (M==M_matlab) << endl;
+	PRINT_SINGLE_ELEMENTS(SC.jacobiSpace({0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7}), "Jacobi = ");
+	PRINT_SINGLE_ELEMENTS(SC.jacobiSpace(std::array<std::string, 3>{"R1", "R2", "R3"}, {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7}), "Jacobi(3) = ");
 
-	cout << "EPS_SP " << EPS_SP << endl;
-	cout << "EPS " << EPS << endl;
 
 }
 
