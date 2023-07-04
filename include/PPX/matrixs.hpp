@@ -87,7 +87,7 @@ namespace ppx
 
 		inline bool near_zero(double a)
 		{
-			return fabs(a) < 1.0e-5;
+			return fabs(a) < NEAR_ZERO;
 		}
 
 		constexpr size_t is_small_matrix_v(size_t A, size_t B)

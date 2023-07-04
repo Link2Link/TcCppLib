@@ -189,6 +189,17 @@ namespace ppx
 	}
 
 	template <size_t M, size_t N>
+	enable_when_matrix_t<M, N, double> norm2(const MatrixS<M, N> &mat)
+	{
+		double res = 0.0;
+		for (auto ele : mat)
+		{
+			res += ele * ele;
+		}
+		return sqrt(res);
+	}
+
+	template <size_t M, size_t N>
 	enable_when_array_t<M, N, double> norminf(const MatrixS<M, N> &mat)
 	{
 		double max = -std::numeric_limits<double>::max();
