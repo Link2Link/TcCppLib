@@ -17,12 +17,12 @@ namespace ppx
 	constexpr double MAX_SP = std::numeric_limits<float>::max();
 	constexpr double MAX_DP = std::numeric_limits<double>::max();
 
-	constexpr double DEG_RAD(double deg)
+	constexpr double deg2rad(double deg)
 	{
 		return deg * PI / 180.0;
 	}
 
-	constexpr double RAD_DEG(double rad)
+	constexpr double rad2deg(double rad)
 	{
 		return 180.0 * rad / PI;
 	}
