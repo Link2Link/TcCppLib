@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 2023/7/4.
-//
-
 #ifndef TCCPPLIB_INCLUDE_PPX_ROBOTICS_HPP_
 #define TCCPPLIB_INCLUDE_PPX_ROBOTICS_HPP_
 #include "liegroup.hpp"
