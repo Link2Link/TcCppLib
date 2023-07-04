@@ -23,9 +23,10 @@ namespace internal {
 template<typename T> struct make_integer;
 template<> struct make_integer<float>    { typedef numext::int32_t type; };
 template<> struct make_integer<double>   { typedef numext::int64_t type; };
-//template<> struct make_integer<half>     { typedef numext::int16_t type; };
-//template<> struct make_integer<bfloat16> { typedef numext::int16_t type; };
-
+#ifndef TC_ENVIRONMENT_RT
+template<> struct make_integer<half>     { typedef numext::int16_t type; };
+template<> struct make_integer<bfloat16> { typedef numext::int16_t type; };
+#endif
 template<typename Packet> EIGEN_STRONG_INLINE EIGEN_DEVICE_FUNC  
 Packet pfrexp_generic_get_biased_exponent(const Packet& a) {
   typedef typename unpacket_traits<Packet>::type Scalar;

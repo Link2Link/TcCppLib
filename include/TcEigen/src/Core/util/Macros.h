@@ -46,7 +46,7 @@
   *   - single precision ArrayBase::sin() and ArrayBase::cos() for SSE and AVX vectorization.
   */
 #ifndef EIGEN_FAST_MATH
-#define EIGEN_FAST_MATH 0
+#define EIGEN_FAST_MATH 1
 #endif
 
 #ifndef EIGEN_STACK_ALLOCATION_LIMIT

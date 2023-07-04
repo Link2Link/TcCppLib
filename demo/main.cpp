@@ -7,6 +7,8 @@
 #include "PPX/ppx.h"
 #include "ppxlog.h"
 
+#include "TcEigen/Dense"
+
 
 
 using namespace std;
@@ -107,12 +109,18 @@ void test_robotic()
 }
 
 
-
+using namespace Eigen;
+using namespace std;
 int main()
 {
-	test_expr();
-	test_matrix();
-	test_robotic();
+//	test_expr();
+//	test_matrix();
+//	test_robotic();
+
+    Matrix<double, 6, 1> s;
+    s.setZero();
+    cout << s << endl;
+
 
 	return 0;
 }

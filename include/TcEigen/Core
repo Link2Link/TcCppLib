@@ -11,6 +11,24 @@
 #ifndef EIGEN_CORE_H
 #define EIGEN_CORE_H
 
+#ifdef TC_ENVIRONMENT_RT
+#define EIGEN_NO_IO
+#define EIGEN_NO_CPUID
+#define EIGEN_DONT_VECTORIZE
+//#define EIGEN_HAS_C99_MATH 0
+#define EIGEN_HAS_CXX11_ATOMIC 0
+#define EIGEN_FAST_MATH 0
+
+namespace std
+{
+	inline short TCMATH_API rand()
+	{
+		long seed = 123;
+		return rands(&seed);
+	}
+}
+#endif
+
 // first thing Eigen does: stop the compiler from reporting useless warnings.
 #include "src/Core/util/DisableStupidWarnings.h"
 
@@ -71,7 +89,7 @@
 #endif
 
 // MSVC for windows mobile does not have the errno.h file
-#if !(EIGEN_COMP_MSVC && EIGEN_OS_WINCE) && !EIGEN_COMP_ARM
+#if !(EIGEN_COMP_MSVC && EIGEN_OS_WINCE) && !EIGEN_COMP_ARM && !defined(TC_ENVIRONMENT_RT)
 #define EIGEN_HAS_ERRNO
 #endif
 
@@ -83,14 +101,18 @@
 #include <cmath>
 #include <cassert>
 #include <functional>
+#ifndef TC_ENVIRONMENT_RT
 #include <sstream>
+#endif
 #ifndef EIGEN_NO_IO
   #include <iosfwd>
 #endif
 #include <cstring>
 #include <string>
 #include <limits>
+#ifndef TC_ENVIRONMENT_RT
 #include <climits> // for CHAR_BIT
+#endif
 // for min/max:
 #include <algorithm>
 
@@ -109,7 +131,7 @@
 #endif
 
 // required for __cpuid, needs to be included after cmath
-#if EIGEN_COMP_MSVC && EIGEN_ARCH_i386_OR_x86_64 && !EIGEN_OS_WINCE
+#if EIGEN_COMP_MSVC && EIGEN_ARCH_i386_OR_x86_64 && !EIGEN_OS_WINCE && !defined(TC_ENVIRONMENT_RT)
   #include <intrin.h>
 #endif
 
@@ -173,9 +195,11 @@ using std::ptrdiff_t;
 #include "src/Core/MathFunctionsImpl.h"
 #include "src/Core/arch/Default/ConjHelper.h"
 // Generic half float support
+#ifndef TC_ENVIRONMENT_RT
 #include "src/Core/arch/Default/Half.h"
 #include "src/Core/arch/Default/BFloat16.h"
 #include "src/Core/arch/Default/TypeCasting.h"
+#endif
 #include "src/Core/arch/Default/GenericPacketMathFunctionsFwd.h"
 
 #if defined EIGEN_VECTORIZE_AVX512
