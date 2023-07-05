@@ -19,6 +19,7 @@
 #define EIGEN_HAS_CXX11_ATOMIC 0
 #define EIGEN_FAST_MATH 0
 
+
 namespace std
 {
 	inline short TCMATH_API rand()
@@ -27,6 +28,9 @@ namespace std
 		return rands(&seed);
 	}
 }
+
+inline double TCMATH_API fabsl(double x) {return fabs_(x);}
+
 #endif
 
 // first thing Eigen does: stop the compiler from reporting useless warnings.

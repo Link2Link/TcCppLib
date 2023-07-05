@@ -108,19 +108,21 @@ void test_robotic()
 
 }
 
-
+#include <cmath>
 using namespace Eigen;
 using namespace std;
+
+namespace CHEN
+{
+	bool NearZero(const double val) return ()
+}
+
+
+
+
+
 int main()
 {
-//	test_expr();
-//	test_matrix();
-//	test_robotic();
-
-    Matrix<double, 6, 1> s;
-    s.setZero();
-    cout << s << endl;
-
 
 	return 0;
 }
