@@ -9,7 +9,7 @@
 namespace ppx
 {
 	// constexpr
-	constexpr double PI = 3.141592653589793;
+	constexpr double PI = 3.14159265358979323846;
 	constexpr double EPS = 1E-8;
 	constexpr double NEAR_ZERO = 1E-5;
 	constexpr double EPS_SP = std::numeric_limits<float>::epsilon();
