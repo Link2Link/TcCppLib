@@ -142,12 +142,24 @@ void test_robotic_mr()
 
 }
 
+
+#include "CHEN/ODEsolver.hpp"
 int main()
 {
-	test_robotic();
+	using namespace ODEsolver;
 
-	cout << "--------------------------" << endl;
-	test_robotic_mr();
+	auto func = ODEsolver::Model::FirstOrderIntegrator;
+
+	State<1> y;
+
+	y(0) = 1;
+	auto dy = func(y, 0);
+
+	auto y2 = RK4<1>(y, 0, 1E-3, func);
+
+
+	cout << dy << endl;
+	cout << y2 << endl;
 
 
 	return 0;
