@@ -13,7 +13,7 @@
 namespace robot_basic_calc
 {
 	// constexpr
-	constexpr double M_PI = 3.14159265358979323846;
+	constexpr double pi = 3.14159265358979323846;
 	constexpr double EPS = 1E-8;
 	constexpr double NEAR_ZERO = 1E-6;
 	constexpr double CHECK_BOUND = 1E-3;
@@ -277,7 +277,7 @@ namespace robot_basic_calc
 				omg = (1.0 / std::sqrt(2 * (1 + R(1, 1)))) * Eigen::Vector3d(R(0, 1), 1 + R(1, 1), R(2, 1));
 			else
 				omg = (1.0 / std::sqrt(2 * (1 + R(0, 0)))) * Eigen::Vector3d(1 + R(0, 0), R(1, 0), R(2, 0));
-			m_ret = VecToso3(M_PI * omg);
+			m_ret = VecToso3(pi * omg);
 			return m_ret;
 		}
 		else
