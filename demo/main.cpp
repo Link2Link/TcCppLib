@@ -148,18 +148,27 @@ int main()
 {
 	using namespace ODEsolver;
 
-	auto func = ODEsolver::Model::FirstOrderIntegrator;
-
-	State<1> y;
-
-	y(0) = 1;
-	auto dy = func(y, 0);
-
-	auto y2 = RK4<1>(y, 0, 1E-3, func);
+//	auto func = ODEsolver::Model::FirstOrderIntegrator;
+    auto func = ODEsolver::Model::SecondOrderIntegrator;
 
 
-	cout << dy << endl;
-	cout << y2 << endl;
+    State<2> y;
+    State<1> u;
+
+    u(0) = 1;
+	y(0) = 0;
+	auto dy = func(y, u, 0);
+
+    double dt = 1E-3;
+    double t = 0;
+
+
+    for(; t<4; )
+    {
+        y = RK5<2,1>(y, u, 0, dt, func);
+        t+=dt;
+        cout << t << ", "<< y(0) << endl;
+    }
 
 
 	return 0;
