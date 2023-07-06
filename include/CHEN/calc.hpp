@@ -16,10 +16,19 @@ namespace robot
     constexpr double M_PI = 3.14159265358979323846;
     constexpr double EPS = 1E-8;
     constexpr double NEAR_ZERO = 1E-6;
+    constexpr double CHECK_BOUND = 1E-3;
     constexpr double EPS_SP = std::numeric_limits<float>::epsilon();
     constexpr double EPS_DP = std::numeric_limits<double>::epsilon();
     constexpr double MAX_SP = std::numeric_limits<float>::max();
     constexpr double MAX_DP = std::numeric_limits<double>::max();
+
+    inline bool isInf(float val) {
+        return (val == MAX_SP);
+    }
+
+    inline bool isInf(double val) {
+        return (val == MAX_DP);
+    }
 
     using Vec3 = Eigen::Matrix<double, 3, 1>;
     using Vec6 = Eigen::Matrix<double, 6, 1>;
@@ -164,7 +173,7 @@ namespace robot
         return ad_ret;
     }
 
-    Eigen::MatrixXd ad(Vec6 V) {
+    Eigen::Matrix<double, 6, 6> ad(Vec6 V) {
         Mat3 omgmat = VecToso3(Vec3(V(0), V(1), V(2)));
 
         Eigen::Matrix<double, 6, 6> result;
@@ -175,7 +184,88 @@ namespace robot
         return result;
     }
 
+    Mat4 TransInv(const Mat4& transform) {
+        auto rp = TransToRp(transform);
+        Mat3 Rt = rp.at(0).transpose();
+        Vec3 t = -(Rt * rp.at(1));
+        Mat4 inv;
+        inv = O4;
+        inv.block(0, 0, 3, 3) = Rt;
+        inv.block(0, 3, 3, 1) = t;
+        inv(3, 3) = 1;
+        return inv;
+    }
 
+    inline Mat3 RotInv(const Mat3& rotMatrix) {
+        return rotMatrix.transpose();
+    }
+
+
+    Vec6 ScrewToAxis(Vec3 q, Vec3 s, double h) {
+        Vec6 axis;
+        axis.segment(0, 3) = s;
+        axis.segment(3, 3) = q.cross(s) + (h * s);
+        return axis;
+    }
+
+    Eigen::Vector<double, 7> AxisAng6(const Vec6& expc6) {
+        Eigen::Vector<double, 7> v_ret(7);
+        if (NearZero(expc6.norm()))
+        {
+            v_ret << expc6, expc6.norm();
+            return v_ret;
+        }
+        double theta = Vec3(expc6(0), expc6(1), expc6(2)).norm();
+        if (NearZero(theta))
+            theta = Vec3(expc6(3), expc6(4), expc6(5)).norm();
+        v_ret << expc6 / theta, theta;
+        return v_ret;
+    }
+
+
+    Mat3 ProjectToSO3(const Mat3& M) {
+        Eigen::JacobiSVD<Mat3> svd(M, Eigen::ComputeFullU | Eigen::ComputeFullV);
+        Mat3 R = svd.matrixU() * svd.matrixV().transpose();
+        if (R.determinant() < 0)
+            // In this case the result may be far from M; reverse sign of 3rd column
+            R.col(2) *= -1;
+        return R;
+    }
+
+    Mat4 ProjectToSE3(const Mat4& M) {
+        Mat3 R = M.block<3, 3>(0, 0);
+        Vec3 t = M.block<3, 1>(0, 3);
+        Mat4 T = RpToTrans(ProjectToSO3(R), t);
+        return T;
+    }
+
+    double DistanceToSO3(const Mat3& M) {
+        if (M.determinant() > 0)
+            return (M.transpose() * M - Eigen::Matrix3d::Identity()).norm();
+        else
+            return MAX_DP;
+    }
+
+    double DistanceToSE3(const Mat4& T) {
+        Mat3 matR = T.block<3, 3>(0, 0);
+        if (matR.determinant() > 0) {
+            Mat4 m_ret;
+            m_ret << matR.transpose()*matR, Eigen::Vector3d::Zero(3),
+                    T.row(3);
+            m_ret = m_ret - I4;
+            return m_ret.norm();
+        }
+        else
+            return MAX_DP;
+    }
+
+    inline bool isSO3(const Mat3& M) {
+        return (DistanceToSO3(M) < CHECK_BOUND);
+    }
+
+    inline bool isSE3(const Mat4& T) {
+        return (DistanceToSE3(T) < CHECK_BOUND);
+    }
 
 }
 

@@ -252,24 +252,25 @@ namespace CHEN
 
 
 
-
+#include "CHEN/calc.hpp"
 int main()
 {
-	using namespace CHEN;
+	using namespace robot;
 	using namespace Eigen;
-	Vector3d v = {1,2,3};
+	Vector3d v = {0.1,0.2,0.3};
 	auto R = MatrixExp3(v);
-	vec3 p;
-	p << 1,2,3;
-	auto T = RpToTrans(R, p);
 	cout << R << endl;
-	cout << T << endl;
 
-	auto Rp = TransToRp(T);
-	CHEN::SO3 R1 = Rp[0];
-	vec3 p1 = Rp[1];
-	cout << R1 << endl;
-	cout << p1 << endl;
+    Mat3 R2;
+    R2 = R;
+    R2(0,0) = -R(0,0);
+    R2(0,1) = -R(0,1);
+    R2(0,2) = -R(0,2);
+
+    cout << "distant " << DistanceToSO3(R2) << endl;
+    cout << isInf(DistanceToSO3(R2)) << endl;
+
+
 
 	return 0;
 }
