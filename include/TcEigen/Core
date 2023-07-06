@@ -24,7 +24,8 @@ namespace std
 {
 	inline short TCMATH_API rand()
 	{
-		long seed = 123;
+		static long seed = 123;
+		++seed;
 		return rands(&seed);
 	}
 }

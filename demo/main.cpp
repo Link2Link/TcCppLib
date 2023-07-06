@@ -138,6 +138,8 @@ void test_robotic_mr()
 	cout << SC.jacobiSpace({0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7}) << endl;
 	cout << SC.jacobiSpace(std::array<std::string, 3>{"R1", "R2", "R3"}, {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7}) << endl;
 
+
+
 }
 
 int main()
