@@ -28,11 +28,11 @@ FILE(GLOB SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 #add_executable(devlop ${SRC} main.cpp)
-add_library(CHEN STATIC ${SRC})
+#add_library(CHEN STATIC ${SRC})
 add_library(ppx INTERFACE)
 target_include_directories(ppx INTERFACE include/PPX)
 
-install(TARGETS CHEN DESTINATION ${PROJECT_SOURCE_DIR}/bin) #安装到bin目录
+#install(TARGETS CHEN DESTINATION ${PROJECT_SOURCE_DIR}/bin) #安装到bin目录
 
 option(ENABLE_UNIT_TESTS "Enable unit tests" ON)
 option(ENABLE_LCOV "Enable code coverage tests" OFF)
