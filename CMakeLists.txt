@@ -41,10 +41,10 @@ message(STATUS "Current : ${PROJECT_NAME}")
 message(STATUS "Enable testing: ${ENABLE_UNIT_TESTS}")
 message(STATUS "Enable coverage: ${ENABLE_LCOV}")
 
-if(${ENABLE_UNIT_TESTS})
+if (${ENABLE_UNIT_TESTS})
     add_definitions(-DENABLE_UNIT_TESTS)
     add_subdirectory(test)
-endif()
+endif ()
 
 
 add_subdirectory(demo)
