@@ -1,22 +1,13 @@
-/***
- * libccd
- * ---------------------------------
- * Copyright (c)2010 Daniel Fiser <danfis@danfis.cz>
- *
- *
- *  This file is part of libccd.
- *
- *  Distributed under the OSI-approved BSD License (the "License");
- *  see accompanying file BDS-LICENSE for details or see
- *  <http://www.opensource.org/licenses/bsd-license.php>.
- *
- *  This software is distributed WITHOUT ANY WARRANTY; without even the
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *  See the License for more information.
- */
+#pragma once
+#ifndef TCCPPLIB_BASIC_HPP
+#define TCCPPLIB_BASIC_HPP
 
-#ifndef __CCD_COMPILER_H__
-#define __CCD_COMPILER_H__
+
+#define CCD_DOUBLE
+#define CCD_EXPORT
+
+
+#include <cstddef>
 
 #include <stddef.h>
 
@@ -31,7 +22,7 @@
 #ifdef __GNUC__
 # define _ccd_inline static inline __attribute__((always_inline))
 #else /* __GNUC__ */
-# define _ccd_inline static __inline
+# define _ccd_inline static inline
 #endif /* __GNUC__ */
 
 
@@ -60,5 +51,5 @@
 # define _CRT_SECURE_NO_WARNINGS
 #endif /* _MSC_VER */
 
-#endif /* __CCD_COMPILER_H__ */
 
+#endif //TCCPPLIB_BASIC_HPP
