@@ -26,7 +26,8 @@ Twincat版本大于 3.1.4024.35
 
 ### 移植的库
 
-- [[A] Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) : 裁剪了半浮点运算相关运算
+- [[A] Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) : 裁剪了对半浮点类型的支持
+- [[A] libccd](https://github.com/danfis/libccd.git) : 去除了IO、debug部分，全部集成在了hpp文件中，但尚未隔离命名空间，使用时必须using namespace CCD
 - [[B] MR](https://github.com/Le0nX/ModernRoboticsCpp.git) : MR的cpp版本
 - [[C] PPX](https://github.com/Xtinc/matrix) : 裁剪了statistics部分
 - [D] CHEN : 开发中
