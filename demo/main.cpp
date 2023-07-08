@@ -123,10 +123,10 @@ void testODE()
 	}
 }
 
-#include "CHEN/control.hpp"
+#include "CHEN/statespace.hpp"
 void testControl()
 {
-	using namespace Control;
+	using namespace LTI;
 
 	StateSpace<2, 1, 1> ss;
 

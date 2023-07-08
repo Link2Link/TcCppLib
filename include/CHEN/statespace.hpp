@@ -5,7 +5,7 @@
 #include "ODEsolver.hpp"
 #include <array>
 
-namespace Control
+namespace LTI
 {
 	template<size_t N>
 	using State = Eigen::Vector<double, N>;
