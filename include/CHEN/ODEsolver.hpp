@@ -28,11 +28,17 @@ namespace ODEsolver
             return u;
         }
 
-        // First Order Integrator with K
-        static dState<1> FirstOrderIntegratorWithK (const State<1>& y, const State<1>& u, const double& t, double K)
-        {
-            return K*u;
-        }
+		// First Order Integrator with K
+		static dState<1> FirstOrderIntegratorWithK (const State<1>& y, const State<1>& u, const double& t, double K)
+		{
+			return K*u;
+		}
+
+		// First Order Integrator with K b
+		static dState<1> FirstOrderIntegratorWithKb (const State<1>& y, const State<1>& u, const double& t, double K, double b)
+		{
+			return K*u;
+		}
 
         // Second Order Integrator
         static dState<2> SecondOrderIntegrator (const State<2>& y, const State<1>& u, const double& t)
@@ -62,6 +68,15 @@ namespace ODEsolver
         yk_ = yk + (h/6)*(k1 + 2*k2 + 2*k3 + k4);
         return yk_;
     }
+
+	template <size_t N, size_t L, typename ...Ts>
+	State<N> RK4_doublestep(const State<N>& yk, const State<L>& u, const double& t, const double& h, const FuncHandle<N, L, Ts...>& func, Ts...args)
+	{
+		State<N> yk_;
+		yk_ = RK4<N, L, Ts...>(yk, u, t, h/2, func, args...);
+		yk_ = RK4<N, L, Ts...>(yk_, u, t+h/2, h/2, func, args...);
+		return yk_;
+	}
 
 
     template <size_t N, size_t L, typename ...Ts>
