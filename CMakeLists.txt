@@ -50,5 +50,7 @@ endif ()
 add_subdirectory(demo)
 
 # copy all lib to Twincat SDK
-file(COPY Include DESTINATION $ENV{TWINCATSDK})
-MESSAGE(STATUS "Copy to Twincat SDK: $ENV{TWINCATSDK}")
+if(DEFINED ENV{TWINCATSDK})
+    file(COPY Include DESTINATION $ENV{TWINCATSDK})
+    MESSAGE(STATUS "Copy to Twincat SDK: $ENV{TWINCATSDK}")
+endif()
