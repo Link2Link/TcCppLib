@@ -25,12 +25,12 @@ set(PROJECT_TOP_DIR ${PROJECT_SOURCE_DIR})
 SET(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/bin)
 
 FILE(GLOB SRC "${PROJECT_SOURCE_DIR}/src/*.cpp")
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/Include)
 
 #add_executable(devlop ${SRC} main.cpp)
 #add_library(CHEN STATIC ${SRC})
 add_library(ppx INTERFACE)
-target_include_directories(ppx INTERFACE include/PPX)
+target_include_directories(ppx INTERFACE Include/PPX)
 
 #install(TARGETS CHEN DESTINATION ${PROJECT_SOURCE_DIR}/bin) #安装到bin目录
 
@@ -48,3 +48,7 @@ endif ()
 
 
 add_subdirectory(demo)
+
+# copy all lib to Twincat SDK
+file(COPY Include DESTINATION $ENV{TWINCATSDK})
+MESSAGE(STATUS "Copy to Twincat SDK: $ENV{TWINCATSDK}")
