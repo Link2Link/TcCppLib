@@ -4,5 +4,5 @@ project(project_demo)
 message(STATUS "---------------------------")
 message(STATUS "Current : ${PROJECT_NAME}")
 
-add_executable(devlop ${SRC} main.cpp ppxlog.cpp)
+add_executable(devlop ${SRC} main.cpp)
 target_include_directories(devlop PUBLIC ${PROJECT_TOP_DIR}/demo)

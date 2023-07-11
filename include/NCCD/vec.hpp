@@ -17,8 +17,8 @@ namespace NCCD
     using real = double;
     constexpr real EPS = DBL_EPSILON;
     constexpr real REAL_MAX = DBL_MAX;
-    constexpr auto SQRT = sqrt;
-    constexpr auto FABS = fabs;
+	constexpr auto SQRT = [](real x)->real {return sqrt(x);};
+    constexpr auto FABS = [](real x)->real {return fabs(x);};
     constexpr auto FMAX = [](real x, real y)->real {return (x>y)?x:y;};
     constexpr auto FMIN = [](real x, real y)->real {return (x<y)?x:y;};
     constexpr real ONE = 1;
