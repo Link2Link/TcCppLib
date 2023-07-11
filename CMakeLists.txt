@@ -47,7 +47,7 @@ if (${ENABLE_UNIT_TESTS})
 endif ()
 
 
-add_subdirectory(demo)
+#add_subdirectory(demo)
 
 # copy all lib to Twincat SDK
 if(DEFINED ENV{TWINCATSDK})
