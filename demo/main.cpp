@@ -90,20 +90,22 @@ using namespace NCCD;
 using namespace std;
 int main()
 {
-    vec3_t v1;
-    vec3_t v2;
-    v1 << 1,1,1;
-    v2 << 1,1,0;
-    cout << Vec3Dist2(v1,v2) << endl;
+    vec3_t a;
+    vec3_t b;
+    vec3_t c;
+    vec3_t P;
+    vec3_t witness;
 
-    Vec3Set(v1, 0.1, 0, 0.2);
+    a << -1,-1,0;
+    b << 1,-1,0;
+    c << 0,1,0;
+    P << 0.5, 0, 2;
 
-    v1.normalize();
 
-    Vec3Set(v1, 1, 0, 0);
-    Vec3Set(v2, 0, 1, 0);
-    auto v3 = v1.cross(v2);
 
-    cout << v3 << endl;
+    auto dist = Vec3PointTriDist2(P, a, b, c, &witness);
+
+    cout << dist << endl;
+    cout << witness << endl;
     return 0;
 }
