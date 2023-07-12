@@ -17,6 +17,8 @@ namespace NCCD
 	using real = double;
 	constexpr real EPS = DBL_EPSILON;
 	constexpr real REAL_MAX = DBL_MAX;
+	const auto SQUARE = [](real x) -> real
+	{ return x*x; };
 	const auto SQRT = [](real x) -> real
 	{ return sqrt(x); };
 	const auto FABS = [](real x) -> real
