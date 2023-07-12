@@ -5,7 +5,7 @@
 #include "NCCD/ccd.hpp"
 #include "NCCD/support.hpp"
 #include "NCCD/simplex.hpp"
-#include "NCCD/algorithm.hpp"
+#include "NCCD/GJK.hpp"
 
 
 using namespace NCCD;
