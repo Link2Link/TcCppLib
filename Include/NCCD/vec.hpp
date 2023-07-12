@@ -1,7 +1,3 @@
-//
-// Created by Chenfei Wang on 7/10/2023.
-//
-
 #ifndef TCCPPLIB_VEC_HPP
 #define TCCPPLIB_VEC_HPP
 

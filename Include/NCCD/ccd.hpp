@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 2023/7/11.
-//
-
 #ifndef TCCPPLIB_INCLUDE_NCCD_CCD_HPP_
 #define TCCPPLIB_INCLUDE_NCCD_CCD_HPP_
 
